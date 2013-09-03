@@ -56,12 +56,12 @@ public class CommentsPersistenceServiceImpl extends BasePersistenceServiceJDBCIm
 			currentDAO = "Comment";
 			commentDAO.init(c);
 		}catch(DAOException e){
-			log.fatal("init failed (dao:"+currentDAO+") ",e );
+			log.error("init failed (dao:"+currentDAO+") ",e );
 		}catch(SQLException e){
-			log.fatal("init failed (sql) ",e );
+			log.error("init failed (sql) ",e );
 		}catch(Exception e){
 			System.out.println(e.getMessage()+" "+e.getClass());
-			log.fatal("init failed (e) ",e );
+			log.error("init failed (e) ",e );
 		}
 	}
 
