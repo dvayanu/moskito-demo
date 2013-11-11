@@ -291,7 +291,7 @@
             <dependency>
                 <groupId>org.moskito</groupId>
                 <artifactId>moskito-control-agent</artifactId>
-                <version>0.2</version>
+                <version>0.3-SNAPSHOT</version>
             </dependency>
 
 
