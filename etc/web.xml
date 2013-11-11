@@ -6,6 +6,7 @@
 <web-app>
     <display-name>moskitodemo</display-name>
 
+    <!-- Those are some additional features that are not included into standart fragment -->
    	<filter>
         <filter-name>SessionThrottleFilter</filter-name>
        	<filter-class>net.anotheria.moskito.web.util.SessionThrottleFilter</filter-class>
@@ -61,55 +62,6 @@
 		<servlet-name>demoservlet2</servlet-name>
 		<url-pattern>/demo2/*</url-pattern>
 	</servlet-mapping>
-	<!--  MOSKITO UI-->
-	<!--  Adding filter to moskito ui which redirects requests to /mui/* to moskito user interface -->	
-   	<filter>
-        <filter-name>MoskitoUIFilter</filter-name>
-       	<filter-class>net.anotheria.moskito.webui.MoskitoUIFilter</filter-class>
-		<init-param>
-			<param-name>path</param-name>
-			<param-value>/mui/</param-value>
-		</init-param>
-   	</filter>
-
-    <!-- 
-    <filter>
-        <filter-name>DebugRequestFilter</filter-name>
-        <filter-class>net.anotheria.moskito.web.filters.DebugRequestFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>DebugRequestFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-   	 -->
-   	<filter-mapping>
-       	<filter-name>MoskitoUIFilter</filter-name>
-   	    <url-pattern>/mui/*</url-pattern>
-    </filter-mapping>
-    <servlet>
-        <servlet-name>JerseyServletContainer</servlet-name>
-        <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
-
-        <init-param>
-            <param-name>com.sun.jersey.config.property.packages</param-name>
-            <param-value>net.anotheria.moskito.webui</param-value>
-        </init-param>
-        <init-param>
-            <param-name>com.sun.jersey.config.feature.DisableXmlSecurity</param-name>
-            <param-value>true</param-value>
-        </init-param>
-        <init-param>
-            <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
-            <param-value>true</param-value>
-        </init-param>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>JerseyServletContainer</servlet-name>
-        <url-pattern>/muirest/*</url-pattern>
-    </servlet-mapping>
-
-    <!--  / MOSKITO UI END -->
 
    	<filter>
         <filter-name>MoskitoDemoFilter</filter-name>
@@ -128,66 +80,6 @@
 			<param-value>/demo/</param-value>
 		</init-param>
    	</filter>
-
-	<filter>
-        <filter-name>MoskitoCommandFilter</filter-name>
-        <filter-class>net.anotheria.moskito.web.filters.MoskitoCommandFilter</filter-class>
-    </filter>
-	<filter>
-        <filter-name>JourneyFilter</filter-name>
-        <filter-class>net.anotheria.moskito.web.filters.JourneyFilter</filter-class>
-    </filter>
-
-<!-- temporarly outcommented  
-	<filter>
-        <filter-name>Path2UseCaseMapper</filter-name>
-        <filter-class>net.anotheria.moskito.web.filters.Path2UseCaseMapperFilter</filter-class>
-		<init-param>
-			<param-name>usecases</param-name>
-			<param-value>
-				/login:login,
-				/solveQE:QESolve,
-				/bla:login
-			</param-value>
-		</init-param>
-    </filter>
- -->
-
-	<filter>
-        <filter-name>DomainFilter</filter-name>
-        <filter-class>net.anotheria.moskito.web.filters.DomainFilter</filter-class>
-		<init-param>
-			<param-name>limit</param-name>
-			<param-value>50</param-value>
-		</init-param>
-    </filter>
-
-	<filter>
-        <filter-name>UserAgentFilter</filter-name>
-        <filter-class>net.anotheria.moskito.web.filters.UserAgentFilter</filter-class>
-		<init-param>
-			<param-name>limit</param-name>
-			<param-value>100</param-value>
-		</init-param>
-    </filter>
-
-	<filter>
-        <filter-name>RefererFilter</filter-name>
-        <filter-class>net.anotheria.moskito.web.filters.RefererFilter</filter-class>
-		<init-param>
-			<param-name>limit</param-name>
-			<param-value>100</param-value>
-		</init-param>
-    </filter>
-
-	<filter>
-        <filter-name>RequestURIFilter</filter-name>
-        <filter-class>net.anotheria.moskito.web.filters.RequestURIFilter</filter-class>
-		<init-param>
-			<param-name>limit</param-name>
-			<param-value>100</param-value>
-		</init-param>
-    </filter>
 
 	<filter>
         <filter-name>SourceIpSegmentFilter</filter-name>
@@ -216,32 +108,6 @@
 
 
     <filter-mapping>
-        <filter-name>MoskitoCommandFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-
-    <filter-mapping>
-        <filter-name>JourneyFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-<!--  temporarly disabled
-    <filter-mapping>
-        <filter-name>Path2UseCaseMapper</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
- -->
-
-    <filter-mapping>
-        <filter-name>DomainFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-
-    <filter-mapping>
-        <filter-name>RequestURIFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-
-    <filter-mapping>
         <filter-name>SourceIpSegmentFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
@@ -254,17 +120,6 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-
-    <filter-mapping>
-        <filter-name>UserAgentFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-
-    <filter-mapping>
-        <filter-name>RefererFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-    
    	<filter-mapping>
        	<filter-name>MoskitoDemoFilter</filter-name>
    	    <url-pattern>/guestbook/*</url-pattern>
@@ -289,16 +144,6 @@
 
     <listener>
 		<listener-class>
-			net.anotheria.moskito.webui.util.StartStopListener
-		</listener-class>
-	</listener>
-    <listener>
-		<listener-class>
-			net.anotheria.moskito.web.session.SessionCountProducer
-		</listener-class>
-    </listener>
-    <listener>
-		<listener-class>
             net.anotheria.moskito.web.session.SessionByTldListener
         </listener-class>
 	</listener>
@@ -320,10 +165,5 @@
             org.anotheria.moskitodemo.accumulator.listener.SetupAccumulators
         </listener-class>
     </listener>
-    <listener>
-		<listener-class>
-			net.anotheria.moskito.webui.util.SetupPreconfiguredAccumulators
-		</listener-class>
-	</listener>
 	
 </web-app>
